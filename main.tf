@@ -7,7 +7,7 @@
 locals {
   default_freeform_tags = {
     terraformed = "Please do not edit manually"
-    module      = "oracle-terraform-oci-vault"
+    module      = "oracle-terraform-oci-vault-secret"
   }
   merged_freeform_tags = merge(var.freeform_tags, local.default_freeform_tags)
   compartment_id       = try(data.oci_identity_compartments.compartment[0].compartments[0].id, var.compartment_id)
