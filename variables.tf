@@ -58,6 +58,11 @@ variable "content" {
   type        = string
 }
 
+variable "content_name" {
+  description = "(Updatable) Names should be unique within a secret. Valid characters are uppercase or lowercase letters, numbers, hyphens, underscores, and periods."
+  type        = string
+}
+
 variable "freeform_tags" {
   description = "(Optional) (Updatable) Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace."
   type        = map(any)

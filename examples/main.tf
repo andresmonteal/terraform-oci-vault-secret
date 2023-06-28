@@ -12,4 +12,5 @@ module "secret" {
   content      = base64encode(file("${var.secret}"))
   vault        = each.value["vault"]
   defined_tags = lookup(each.value, "defined_tags", {})
+  content_name = each.value["content_name"]
 }

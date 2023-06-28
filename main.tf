@@ -24,6 +24,7 @@ resource "oci_vault_secret" "main" {
 
     #Optional
     content = var.content
+    name    = var.content_name
   }
   secret_name = var.name
   vault_id    = local.vault_id
