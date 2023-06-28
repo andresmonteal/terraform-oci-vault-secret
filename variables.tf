@@ -56,6 +56,7 @@ variable "content_type" {
 variable "content" {
   description = "(Optional) (Updatable) The base64-encoded content of the secret."
   type        = string
+  sensitive   = true
 }
 
 variable "content_name" {
