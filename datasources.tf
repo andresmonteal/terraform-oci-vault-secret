@@ -37,7 +37,7 @@ data "oci_kms_vaults" "vault" {
 data "oci_kms_keys" "key" {
   #Required
   compartment_id      = local.compartment_id
-  management_endpoint = data.oci_kms_vaults.vault[0].vaults[0].management_endpoint
+  management_endpoint = local.management_endpoint
 
   #Optional
   filter {

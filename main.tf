@@ -13,6 +13,7 @@ locals {
   compartment_id       = try(data.oci_identity_compartments.compartment[0].compartments[0].id, var.compartment_id)
   vault_id             = try(data.oci_kms_vaults.vault[0].vaults[0].id, var.vault_id)
   key_id               = try(data.oci_kms_keys.key.keys[0].id, var.key_id)
+  management_endpoint  = try(data.oci_kms_vaults.vault[0].vaults[0].management_endpoint, var.management_endpoint)
 }
 
 resource "oci_vault_secret" "main" {

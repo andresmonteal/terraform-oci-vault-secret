@@ -75,3 +75,9 @@ variable "defined_tags" {
   type        = map(any)
   default     = null
 }
+
+variable "management_endpoint" {
+  description = "(Optional) (Updatable) The service endpoint to perform management operations against."
+  type        = string
+  default     = null
+}
