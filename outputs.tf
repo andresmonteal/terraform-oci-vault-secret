@@ -10,10 +10,10 @@ output "public_ssh_key_id" {
 
 output "secret_content" {
   description = "secret content"
-  value       = oci_vault_secret.main[0].secret_content.content
+  value       = oci_vault_secret.main[0].secret_content
 }
 
 output "public_ssh_key" {
   description = "secret content"
-  value       = oci_vault_secret.main[1].secret_content.content
+  value       = oci_vault_secret.main[1].secret_content
 }
