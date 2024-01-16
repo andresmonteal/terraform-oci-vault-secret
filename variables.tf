@@ -57,6 +57,7 @@ variable "content" {
   description = "(Optional) (Updatable) The base64-encoded content of the secret."
   type        = string
   sensitive   = true
+  default     = null
 }
 
 variable "content_name" {
@@ -78,6 +79,12 @@ variable "defined_tags" {
 
 variable "management_endpoint" {
   description = "(Optional) (Updatable) The service endpoint to perform management operations against."
+  type        = string
+  default     = null
+}
+
+variable "type" {
+  description = "(Optional) (Updatable) If ssh key then generates key pair and secrets. "
   type        = string
   default     = null
 }

@@ -14,9 +14,17 @@ locals {
   vault_id             = try(data.oci_kms_vaults.vault[0].vaults[0].id, var.vault_id)
   key_id               = try(data.oci_kms_keys.key.keys[0].id, var.key_id)
   management_endpoint  = try(data.oci_kms_vaults.vault[0].vaults[0].management_endpoint, var.management_endpoint)
+  ssh_keys             = ["private_key_pem", "public_key_openssh"]
+}
+
+resource "tls_private_key" "ssh" {
+  count     = var.type == "ssh" ? 1 : 0
+  algorithm = "RSA"
+  rsa_bits  = 2048
 }
 
 resource "oci_vault_secret" "main" {
+  count = var.type == "ssh" ? 2 : 1
   #Required
   compartment_id = local.compartment_id
   secret_content {
@@ -24,10 +32,10 @@ resource "oci_vault_secret" "main" {
     content_type = var.content_type
 
     #Optional
-    content = var.content
-    name    = var.content_name
+    content = var.type == "ssh" ? base64encode(tls_private_key.ssh[0][local.ssh_keys[count.index]]) : var.content
+    name    = var.type == "ssh" ? "1" : var.content_name
   }
-  secret_name = var.name
+  secret_name = var.type == "ssh" ? "${var.name}-${substr(local.ssh_keys[count.index], 0, 3)}" : var.name
   vault_id    = local.vault_id
 
   #Optional
