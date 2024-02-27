@@ -63,7 +63,7 @@ variable "content" {
 variable "content_name" {
   description = "(Updatable) Names should be unique within a secret. Valid characters are uppercase or lowercase letters, numbers, hyphens, underscores, and periods."
   type        = string
-  default     = null
+  default     = "1"
 }
 
 variable "freeform_tags" {

@@ -33,7 +33,7 @@ resource "oci_vault_secret" "main" {
 
     #Optional
     content = var.type == "ssh" ? base64encode(tls_private_key.ssh[0][local.ssh_keys[count.index]]) : var.content
-    name    = var.type == "ssh" ? "1" : var.content_name
+    name    = var.content_name
   }
   secret_name = var.type == "ssh" ? "${var.name}-${substr(local.ssh_keys[count.index], 0, 3)}" : var.name
   vault_id    = local.vault_id
